@@ -7,6 +7,7 @@ public class FishBehaviour : MonoBehaviour
 
     private Vector3 moveDirection = Vector3.zero;
     private float decisionTime = 0f;
+    private bool onDanger = false;
 
     private void Awake()
     {
@@ -31,15 +32,23 @@ public class FishBehaviour : MonoBehaviour
     private Vector3 DecideDirection()
     {
         Vector3 dir = Vector3.zero;
-        if(NearDanger(out dir))
+
+        if(NearDanger(out Vector3 dangerDir))
         {
-            dir = -dir.normalized * behaviourData.moveSpeed * behaviourData.speedFactor;
+            if(onDanger == false)
+            {
+                onDanger = true;
+                dir = -dangerDir.normalized * behaviourData.moveSpeed * behaviourData.speedFactor;
+            }
 
             // 근처에 위험한 놈이 있으면 방향 결정 시간 연장
             decisionTime += Time.deltaTime;
         }
         else
         {
+            if(onDanger)
+                onDanger = false;
+
             // (1 / 활동성) -+ 활동성 마다 방향 바꾸기
             if(Time.time > decisionTime)
             {

@@ -19,4 +19,4 @@ MonoBehaviour:
   moveSpeed: 1
   speedFactor: 2
   rotateSpeed: 10
-  activeness: 0.01
+  activeness: 0.1
