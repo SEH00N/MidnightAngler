@@ -17,6 +17,6 @@ MonoBehaviour:
     m_Bits: 64
   sight: 3
   moveSpeed: 1
-  speedFactor: 2
+  speedFactor: 5
   rotateSpeed: 10
   activeness: 0.1
