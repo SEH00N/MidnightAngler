@@ -14,10 +14,13 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         body = transform.GetChild(0) as RectTransform;
     }
 
+    private void Update()
+    {
+        //transform.position 
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
-
-        Debug.Log("asd");
         onDrag = true;
     }
 
