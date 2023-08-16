@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EncyclopediaPanelBtn : MonoBehaviour
+public class FishdexPanelBtn : MonoBehaviour
 {
     [SerializeField] private List<GameObject> rarePanel;
 

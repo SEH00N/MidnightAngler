@@ -41,8 +41,9 @@ public class ShipPanel : MonoBehaviour
 
     public void ShipLevelUp(int cost)
     {
-        int money = MoneyManager.instance.money;
-        int shipLevel = LevelManager.instance.shipLevel - 1;
+        int money = DataTemp.Instance.moneyTemp.money;
+        int ruby = DataTemp.Instance.moneyTemp.ruby;
+        int shipLevel = DataTemp.Instance.levelTemp.shipLevel - 1;
 
         if (cost == 1)//돈
         {
@@ -52,12 +53,13 @@ public class ShipPanel : MonoBehaviour
         }
         else if (cost == 2)//루비
         {
-            if (rubyCost[shipLevel] > money)//루비 부족
+            if (rubyCost[shipLevel] > ruby)//루비 부족
                 return;
-            money -= rubyCost[shipLevel];
+            ruby -= rubyCost[shipLevel];
         }
-        MoneyManager.instance.money = money;
-        LevelManager.instance.shipLevel++;
+        DataTemp.Instance.moneyTemp.money = money;
+        DataTemp.Instance.moneyTemp.ruby = ruby;
+        DataTemp.Instance.levelTemp.shipLevel++;
 
         MapUpdate();
         ShipUpdate();
@@ -68,15 +70,15 @@ public class ShipPanel : MonoBehaviour
     {
         for (int i = 0; i < mapLevel.Length; i++)
         {
-            if (LevelManager.instance.shipLevel >= mapLevel[i])
+            if (DataTemp.Instance.levelTemp.shipLevel >= mapLevel[i])
                 map.sprite = mapSprite[i];
         }
     }
 
     void ShipUpdate() //배 레벨 이미지
     {
-        int nowLevelcost = LevelManager.instance.shipLevel;
-        int newLevelcost = LevelManager.instance.shipLevel + 1;
+        int nowLevelcost = DataTemp.Instance.levelTemp.shipLevel;
+        int newLevelcost = DataTemp.Instance.levelTemp.shipLevel + 1;
 
         nowLevel.text = $"Lv.{nowLevelcost}";
         newLevel.text = $"Lv.{newLevelcost}";
@@ -101,12 +103,13 @@ public class ShipPanel : MonoBehaviour
 
     void ButtonUpdate()
     {
-        int money = MoneyManager.instance.money;
-        int shipLevel = LevelManager.instance.shipLevel - 1;
+        int money = DataTemp.Instance.moneyTemp.money;
+        int ruby = DataTemp.Instance.moneyTemp.ruby;
+        int shipLevel = DataTemp.Instance.levelTemp.shipLevel - 1;
 
         moneyBtn.GetComponent<Image>().color = moneyCost[shipLevel] > money
             ? Color.gray : Color.white;
-        rubyBtn.GetComponent<Image>().color = moneyCost[shipLevel] > money
+        rubyBtn.GetComponent<Image>().color = moneyCost[shipLevel] > ruby
             ? Color.gray : Color.white;
 
         moneyText.text = string.Format("{0:#,###}", moneyCost[shipLevel]) + " k";
