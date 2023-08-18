@@ -3358,7 +3358,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 612220837}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1194691264}
+        m_TargetAssemblyTypeName: FishArea, Assembly-CSharp
+        m_MethodName: AreaSetting
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &612220837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3479,7 +3491,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 620318198}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1194691264}
+        m_TargetAssemblyTypeName: FishArea, Assembly-CSharp
+        m_MethodName: AreaSetting
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &620318198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4829,7 +4853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &908130175
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6776,12 +6800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516fe6242c3792a45acd1a3f24ebd6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaBtns:
-  - {fileID: 620318197}
-  - {fileID: 1834883310}
-  - {fileID: 1999657327}
-  - {fileID: 612220836}
-  - {fileID: 2142100199}
 --- !u!114 &1194691266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9765,7 +9783,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1834883311}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1194691264}
+        m_TargetAssemblyTypeName: FishArea, Assembly-CSharp
+        m_MethodName: AreaSetting
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1834883311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10947,7 +10977,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1999657328}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1194691264}
+        m_TargetAssemblyTypeName: FishArea, Assembly-CSharp
+        m_MethodName: AreaSetting
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1999657328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11975,7 +12017,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2142100200}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1194691264}
+        m_TargetAssemblyTypeName: FishArea, Assembly-CSharp
+        m_MethodName: AreaSetting
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2142100200
 MonoBehaviour:
   m_ObjectHideFlags: 0

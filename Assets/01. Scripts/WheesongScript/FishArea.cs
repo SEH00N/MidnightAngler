@@ -5,19 +5,18 @@ using UnityEngine.UI;
 
 public class FishArea : MonoBehaviour
 {
-    [SerializeField] private Button[] areaBtns;
+    //[SerializeField] private Button[] areaBtns;
 
-    private void Awake()
-    {
-        for (int i = 0; i < areaBtns.Length; i++)
-        {
-            areaBtns[i].onClick.AddListener(() => AreaSetting(i + 1));
-        }
-    }
+    //private void Awake()
+    //{
+    //    for (int i = 0; i < areaBtns.Length; i++)
+    //    {
+    //        areaBtns[i].onClick.AddListener(() => AreaSetting(i + 1));
+    //    }
+    //}
 
-    void AreaSetting(int area)
+    public void AreaSetting(int area)
     {
         DataTemp.Instance.areaTemp.area = area;
-        Debug.Log(DataTemp.Instance.areaTemp.area);
     }
 }
