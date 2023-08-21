@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class FishArea : MonoBehaviour
 {
+    [SerializeField] private int[] areaLevel;
     //[SerializeField] private Button[] areaBtns;
 
     //private void Awake()
@@ -17,6 +18,8 @@ public class FishArea : MonoBehaviour
 
     public void AreaSetting(int area)
     {
-        DataTemp.Instance.areaTemp.area = area;
+        if (DataTemp.Instance.shipLevel < areaLevel[area]) return;
+
+        DataTemp.Instance.area = area;
     }
 }

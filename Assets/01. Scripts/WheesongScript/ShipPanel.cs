@@ -41,9 +41,9 @@ public class ShipPanel : MonoBehaviour
 
     public void ShipLevelUp(int cost)
     {
-        int money = DataTemp.Instance.moneyTemp.money;
-        int ruby = DataTemp.Instance.moneyTemp.ruby;
-        int shipLevel = DataTemp.Instance.levelTemp.shipLevel - 1;
+        int money = DataTemp.Instance.money;
+        int ruby = DataTemp.Instance.ruby;
+        int shipLevel = DataTemp.Instance.shipLevel - 1;
 
         if (cost == 1)//돈
         {
@@ -57,9 +57,9 @@ public class ShipPanel : MonoBehaviour
                 return;
             ruby -= rubyCost[shipLevel];
         }
-        DataTemp.Instance.moneyTemp.money = money;
-        DataTemp.Instance.moneyTemp.ruby = ruby;
-        DataTemp.Instance.levelTemp.shipLevel++;
+        DataTemp.Instance.money = money;
+        DataTemp.Instance.ruby = ruby;
+        DataTemp.Instance.shipLevel++;
 
         MapUpdate();
         ShipUpdate();
@@ -70,15 +70,15 @@ public class ShipPanel : MonoBehaviour
     {
         for (int i = 0; i < mapLevel.Length; i++)
         {
-            if (DataTemp.Instance.levelTemp.shipLevel >= mapLevel[i])
+            if (DataTemp.Instance.shipLevel >= mapLevel[i])
                 map.sprite = mapSprite[i];
         }
     }
 
     void ShipUpdate() //배 레벨 이미지
     {
-        int nowLevelcost = DataTemp.Instance.levelTemp.shipLevel;
-        int newLevelcost = DataTemp.Instance.levelTemp.shipLevel + 1;
+        int nowLevelcost = DataTemp.Instance.shipLevel;
+        int newLevelcost = DataTemp.Instance.shipLevel + 1;
 
         nowLevel.text = $"Lv.{nowLevelcost}";
         newLevel.text = $"Lv.{newLevelcost}";
@@ -103,9 +103,9 @@ public class ShipPanel : MonoBehaviour
 
     void ButtonUpdate()
     {
-        int money = DataTemp.Instance.moneyTemp.money;
-        int ruby = DataTemp.Instance.moneyTemp.ruby;
-        int shipLevel = DataTemp.Instance.levelTemp.shipLevel - 1;
+        int money = DataTemp.Instance.money;
+        int ruby = DataTemp.Instance.ruby;
+        int shipLevel = DataTemp.Instance.shipLevel - 1;
 
         moneyBtn.GetComponent<Image>().color = moneyCost[shipLevel] > money
             ? Color.gray : Color.white;

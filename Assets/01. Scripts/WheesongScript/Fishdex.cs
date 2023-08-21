@@ -16,14 +16,14 @@ public class Fishdex : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //    AddFish("A");
-        //if (Input.GetKeyDown(KeyCode.W))
-        //    AddFish("B");
-        //if (Input.GetKeyDown(KeyCode.E))
-        //    AddFish("C");
-        //if (Input.GetKeyDown(KeyCode.R))
-        //    AddFish("D");
+        if (Input.GetKeyDown(KeyCode.Q))
+            AddFish("A");
+        if (Input.GetKeyDown(KeyCode.W))
+            AddFish("B");
+        if (Input.GetKeyDown(KeyCode.E))
+            AddFish("C");
+        if (Input.GetKeyDown(KeyCode.R))
+            AddFish("D");
     }
 
     public void OnEncyclopedia()
