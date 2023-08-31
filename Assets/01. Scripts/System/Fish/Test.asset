@@ -15,8 +15,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  sight: 0
-  moveSpeed: 0
-  speedFactor: 0
-  rotateSpeed: 0
-  activeness: 0
+  sight: 5
+  moveSpeed: 5
+  speedFactor: 2
+  rotateSpeed: 10
+  activeness: 0.5

@@ -1,22 +1,45 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler 
 {
-    private float distance;
-    private float Distance => body.rect.xMax;
-    private RectTransform body;
+    [Tooltip("Speed of return to origin position when inactivated")]
+    [SerializeField] float returningSpeed = 10f;
 
+    // joystick values when its activated, Vector2.zero when its inactivated
+    [SerializeField] UnityEvent<Vector2> OnValueChanged;
+
+    private RectTransform body;
+    private Transform stick;
+
+    private float distance;
     private bool onDrag = false;
 
     private void Awake()
     {
-        body = transform.GetChild(0) as RectTransform;
+        body = transform as RectTransform;
+        stick = transform.GetChild(0);
+    }
+
+    private void Start()
+    {
+        distance = body.rect.xMax;
     }
 
     private void Update()
     {
-        //transform.position 
+        if(onDrag == false)
+        {
+            stick.position = Vector3.Lerp(stick.position, body.position, Time.deltaTime * returningSpeed);
+            return;
+        }
+
+        Vector2 value = Input.mousePosition - body.position;
+        value = (value.magnitude < distance) ? value : value.normalized * distance;
+        stick.position = body.position + (Vector3)value;
+
+        OnValueChanged?.Invoke(value.normalized);
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -26,6 +49,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-
+        onDrag = false;
+        OnValueChanged?.Invoke(Vector2.zero);
     }
 }

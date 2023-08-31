@@ -54,7 +54,7 @@ public class FishBehaviour : MonoBehaviour
             {
                 // 방향 다시 정하기
                 
-                float activeness = behaviourData.activeness;
+                float activeness = Mathf.Max(behaviourData.activeness, 0.01f);
                 decisionTime = Time.time + ((1f / activeness) + Random.Range(-activeness, activeness));
 
                 dir = Random.insideUnitCircle.normalized * behaviourData.moveSpeed;
