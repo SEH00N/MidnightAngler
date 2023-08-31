@@ -215,15 +215,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 185666653}
+  - component: {fileID: 185666656}
   - component: {fileID: 185666654}
-  - component: {fileID: 185666655}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &185666653
 Transform:
   m_ObjectHideFlags: 0
@@ -248,11 +248,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 185666652}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f314e97a18c5b48a6fe07ba799efeb, type: 3}
+  m_Script: {fileID: 11500000, guid: bd72deb852a533d4cbdcf56477489c02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviourData: {fileID: 11400000, guid: 0a049ab1f7e38fd43a51d302ae30a317, type: 2}
---- !u!114 &185666655
+--- !u!114 &185666656
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -261,9 +260,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 185666652}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 951005c80e215294eb07f656e5940dfa, type: 3}
+  m_Script: {fileID: 11500000, guid: fb40fd5dec6633e4caeead9ac361008e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  behaviourData: {fileID: 11400000, guid: 577b4754e187b3a43b75b2ba570bd116, type: 2}
 --- !u!1 &276089982
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +340,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1016,7 +1016,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1917671691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 979cd8eebd32ccc4fb6b6e3b7b25c3e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 33707b18039d36846b9497953261f9df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1917671694
