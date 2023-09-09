@@ -7,8 +7,10 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [Tooltip("Speed of return to origin position when inactivated")]
     [SerializeField] float returningSpeed = 10f;
 
-    // joystick values when its activated, Vector2.zero when its inactivated
+    // return joystick values when its activated, return Vector2.zero when its inactivated
+    [Space(20f)]
     [SerializeField] UnityEvent<Vector2> OnValueChanged;
+    [SerializeField] UnityEvent OnReleased;
 
     private RectTransform body;
     private Transform stick;
@@ -50,6 +52,6 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerUp(PointerEventData eventData)
     {
         onDrag = false;
-        OnValueChanged?.Invoke(Vector2.zero);
+        OnReleased?.Invoke();
     }
 }
