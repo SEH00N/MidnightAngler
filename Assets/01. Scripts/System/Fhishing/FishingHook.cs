@@ -1,14 +1,16 @@
-using System.Runtime.InteropServices;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FishingHook : MonoBehaviour
 {
     [SerializeField] float vertexDistance = 0.05f;
     [SerializeField] float updateDelay = 0.05f;
     [SerializeField] int vertexCount = 10;
+
+    [Space(20f)]
+    [SerializeField] UnityEvent<Vector3[]> OnVertexUpdated;
 
     private Queue<Vector3> vertices = new Queue<Vector3>();
     private LineRenderer lineRenderer = null;
@@ -57,8 +59,11 @@ public class FishingHook : MonoBehaviour
                 if(vertices.Count > vertexCount)
                     vertices.Dequeue();
 
+                Vector3[] positions = vertices.ToArray();
+
                 lineRenderer.positionCount = vertices.Count;
-                lineRenderer.SetPositions(vertices.ToArray());
+                lineRenderer.SetPositions(positions);
+                OnVertexUpdated?.Invoke(positions);
             }
 
             yield return delay;

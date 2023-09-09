@@ -670,8 +670,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1207200642}
   - component: {fileID: 1207200643}
-  - component: {fileID: 1207200644}
   - component: {fileID: 1207200645}
+  - component: {fileID: 1207200644}
   m_Layer: 6
   m_Name: FishingHook
   m_TagString: Untagged
@@ -747,7 +747,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vertexDistance: 1
+  updateDelay: 0.05
   vertexCount: 10
+  OnVertexUpdated:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1376652169
 GameObject:
   m_ObjectHideFlags: 0
