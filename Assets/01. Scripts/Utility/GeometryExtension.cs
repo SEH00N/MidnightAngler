@@ -1,8 +1,32 @@
 using UnityEngine;
 
-public static class VectorExtension
+public static class GeometryExtension
 {
     public const float EPSILON = 0.01f;
+
+    public static bool InsideGeometry(Vector3 point, Vector3[] geometry)
+    {
+        int crossed = 0;
+        int n = geometry.Length;
+
+        for(int i = 0; i < n; ++i)
+        {
+            int j = (i + 1) % n;
+
+            // y값이 둘다 크거나 둘다 작으면 해당 면의 바운딩 박스 밖의 점
+            if ((geometry[i].y > point.y) != (geometry[j].y > point.y)) 
+            {
+                // 바운딩 박스의 최소 x값이 현재 point의 x값보다 크다면 point의 반직선이 해당 선분을 교차한 상태
+                float boundX = Mathf.Min(geometry[j].x, geometry[i].x);
+                if(point.x < boundX)
+                    crossed++;
+            }
+        }
+ 
+        // point에서 그은 x축에 평행한 반직선이 교차한 선분의 개수가 홀수면 내부 아니면 외부
+        // 그려보면 이해 됨
+        return (crossed % 2 == 1);
+    }
 
     public static float CCW(Vector3 a, Vector3 b) => Vector3.Cross(a, b).z;
     public static float CCW(this Vector3 point, Vector3 a, Vector3 b) => Vector3.Cross(a - point, b - point).z;
