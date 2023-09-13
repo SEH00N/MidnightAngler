@@ -52,6 +52,7 @@ public class FishingHook : MonoBehaviour
         while(true) {
             Vector3 last = lineRenderer.GetPosition(lineRenderer.positionCount - 1);
             Vector3 now = lineRenderer.transform.position;
+            now.z = 1;
 
             if((now - last).magnitude > vertexDistance)
             {

@@ -125,7 +125,7 @@ public static class GeometryExtension
 
         // 점 c를 기준으로 a와 b를 외적했을 때 값이 0이 아니면 평행하지 않다
         // 그렇게 됐을 때 선분 A와 선분 B는 동일선상에 있지 않다
-        if(Vector3.Cross(a - c, b - c).z != 0) 
+        if(c.CCW(a, b) != EPSILON) 
             return false; // 선분 A와 선분 B는 동일선상에 있지 않을 때 교점을 찾을 수 없기 때문에 false 반환
 
         // 동일선상에 있지만 모든 꼭짓점들이 같은 경우 동일한 직선이다
@@ -137,6 +137,8 @@ public static class GeometryExtension
 
         if(d == a) // 선분 B의 종점과 선분 A의 시점이 같을 경우 교점은 d(선분 B의 종점)와 a(선분 A의 시점)
             intersection = d;
+
+        Debug.Log(intersection);
 
         return true; // 교점이 찾아졌을 때 true 반환
     }
@@ -150,7 +152,7 @@ public static class GeometryExtension
         Vector3 v1 = point - a; // a -> point 벡터
         Vector3 v2 = b - a; // a -> b 벡터
 
-        Debug.Log(Mathf.Abs(v1.y / v1.x - v2.y / v2.x));
+        // Debug.Log(Mathf.Abs(v1.y / v1.x - v2.y / v2.x));
 
         if((v1.y / v1.x - v2.y / v2.x) < EPSILON) // v1의 기울기와 v2의 기울기의 오차가 0.01보다 작고
         {

@@ -7,18 +7,10 @@ public class CatchFish : MonoBehaviour
 {
     [SerializeField] PolygonCollider2D col2d;
 
-    private void Awake()
-    {
-        
-    }
-    bool debuggg = false;
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.A))
             Detect(col2d.points.Select(x => (Vector3)x).ToArray());
-
-        if(Input.GetKeyDown(KeyCode.Space))
-            debuggg = !debuggg;
     }
 
     public void Detect(Vector3[] positions)
@@ -41,7 +33,6 @@ public class CatchFish : MonoBehaviour
         if(positions.Length < 4)
             return null;
 
-
         Vector3 lastStartPoint = positions[positions.Length - 2];
         Vector3 lastEndPoint = positions[positions.Length - 1];
 
@@ -50,13 +41,6 @@ public class CatchFish : MonoBehaviour
             Vector3 startPoint = positions[i];
             Vector3 endPoint = positions[i + 1];
 
-            if(debuggg)
-            {
-                Debug.DrawLine(startPoint, endPoint, Color.red, Time.deltaTime);
-                Debug.DrawLine(lastStartPoint, lastEndPoint, Color.green, Time.deltaTime);
-                Debug.Break();
-            }
-
             Vector3 intersection;
             bool result = GeometryExtension.GetSegmentIntersection(startPoint, endPoint, lastStartPoint, lastEndPoint, out intersection);
 
@@ -64,6 +48,8 @@ public class CatchFish : MonoBehaviour
                 ArraySegment<Vector3> geomtry = new ArraySegment<Vector3>(positions, i, positions.Length - i);
                 geomtry.Array[i] = intersection;
                 geomtry.Array[geomtry.Array.Length - 1] = intersection;
+
+                Debug.Log($"{startPoint}, {endPoint} : {lastStartPoint}, {lastEndPoint}");
 
                 return geomtry.Array;
             }
