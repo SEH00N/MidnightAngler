@@ -538,6 +538,7 @@ PolygonCollider2D:
       - {x: -2.3858106, y: -3.170603}
       - {x: 1.3391987, y: -3.33162}
       - {x: 2.1586852, y: 2.026534}
+      - {x: -1.56, y: 4.005654}
 --- !u!114 &1465373661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,7 +551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6924ab2a62f17024ea8ca80ebc9c9326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col2d: {fileID: 1465373660}
 --- !u!1 &1535362968
 GameObject:
   m_ObjectHideFlags: 0

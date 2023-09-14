@@ -748,7 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a90cc783f65f28438ee8ae59f34ebaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vertexDistance: 0.1
+  vertexDistance: 0.05
   updateDelay: 0.05
   vertexCount: 15
   OnVertexUpdated:

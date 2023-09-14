@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class CatchFish : MonoBehaviour
 {
-    [SerializeField] PolygonCollider2D col2d;
-
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
-            Detect(col2d.points.Select(x => (Vector3)x).ToArray());
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            Detect(GetComponent<PolygonCollider2D>().points.Select(x => (Vector3)x).ToArray());
+        }
     }
 
     public void Detect(Vector3[] positions)
@@ -19,7 +19,6 @@ public class CatchFish : MonoBehaviour
         if(geometry == null)
             return;
 
-        Debug.Log("Geometry Closed");
         Collider2D[] boundedCols = DetectBoundingArea(geometry);
         List<Collider2D> detectedCols = DetectGeometryArea(boundedCols, geometry);
 
@@ -35,11 +34,14 @@ public class CatchFish : MonoBehaviour
 
         Vector3 lastStartPoint = positions[positions.Length - 2];
         Vector3 lastEndPoint = positions[positions.Length - 1];
+            Debug.DrawLine(lastStartPoint, lastEndPoint, Color.green, 1f);
 
         for(int i = 0; i < positions.Length - 3; i++)
         {
             Vector3 startPoint = positions[i];
             Vector3 endPoint = positions[i + 1];
+
+            Debug.DrawLine(startPoint, endPoint, Color.red, 1f);
 
             Vector3 intersection;
             bool result = GeometryExtension.GetSegmentIntersection(startPoint, endPoint, lastStartPoint, lastEndPoint, out intersection);
@@ -47,27 +49,26 @@ public class CatchFish : MonoBehaviour
             if(result) {
                 ArraySegment<Vector3> geomtry = new ArraySegment<Vector3>(positions, i, positions.Length - i);
                 geomtry.Array[i] = intersection;
-                geomtry.Array[geomtry.Array.Length - 1] = intersection;
+                geomtry.Array[geomtry.Count + geomtry.Offset - 1] = intersection;
 
-                Debug.Log($"{startPoint}, {endPoint} : {lastStartPoint}, {lastEndPoint}");
+                // for(int j = geomtry.Offset; j < geomtry.Offset + geomtry.Count - 1; ++j)
+                //     Debug.DrawLine(geomtry.Array[j], geomtry.Array[j + 1], Color.red, 1f);
+                // Debug.Break();
 
-                return geomtry.Array;
+                return geomtry.ToArray();
             }
         }
 
         return null;
     }
 
-    private Collider2D[] DetectBoundingArea(Vector3[] positions)
+    private Collider2D[] DetectBoundingArea(Vector3[] geometry)
     {
-        Vector2[] planePositions = positions.Select(x => (Vector2)x).ToArray();
-        col2d.points = planePositions;
-
-        Bounds bound = col2d.bounds;
+        Bounds bound = geometry.GetBoundingBox();
         return Physics2D.OverlapBoxAll(bound.center, bound.size, 0);        
     }
 
-    private List<Collider2D> DetectGeometryArea(Collider2D[] detectedColliders, Vector3[] positions)
+    private List<Collider2D> DetectGeometryArea(Collider2D[] detectedColliders, Vector3[] geomtry)
     {
         List<Collider2D> detected = new List<Collider2D>();
 
@@ -76,11 +77,14 @@ public class CatchFish : MonoBehaviour
             bool result = true;
 
             Vector3 leftTop = new Vector3(col.bounds.min.x, col.bounds.max.y);
+            Vector3 leftBottom = col.bounds.min;
+            Vector3 rightTop = col.bounds.max;
             Vector3 rightBottom = new Vector3(col.bounds.max.x, col.bounds.min.y);
-            result &= GeometryExtension.InsideGeometry(col.bounds.min, positions);
-            result &= GeometryExtension.InsideGeometry(col.bounds.max, positions);
-            result &= GeometryExtension.InsideGeometry(leftTop, positions);
-            result &= GeometryExtension.InsideGeometry(rightBottom, positions);
+
+            result &= GeometryExtension.InsideGeometry(leftTop, geomtry);
+            result &= GeometryExtension.InsideGeometry(leftBottom, geomtry);
+            result &= GeometryExtension.InsideGeometry(rightTop, geomtry);
+            result &= GeometryExtension.InsideGeometry(rightBottom, geomtry);
                
             if(result)
                 detected.Add(col);

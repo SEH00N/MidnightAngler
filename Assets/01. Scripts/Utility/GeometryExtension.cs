@@ -4,6 +4,25 @@ public static class GeometryExtension
 {
     public const float EPSILON = 0.01f;
 
+    public static Bounds GetBoundingBox(this Vector3[] geometry)
+    {
+        Vector3 min = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
+        Vector3 max = new Vector3(-Mathf.Infinity, -Mathf.Infinity, -Mathf.Infinity);
+
+        for(int i = 0; i < geometry.Length; i++)
+        {
+            Vector3 vertex = geometry[i];
+            Mathf.Min(min.x, vertex.x);
+            Mathf.Min(min.y, vertex.y);
+            Mathf.Max(max.x, vertex.x);
+            Mathf.Max(max.y, vertex.y);
+        }
+
+        Bounds bounds = new Bounds();
+        bounds.SetMinMax(min, max);
+        return bounds;
+    }
+
     public static bool InsideGeometry(Vector3 point, Vector3[] geometry)
     {
         int crossed = 0;
@@ -81,6 +100,7 @@ public static class GeometryExtension
     /// <returns>두 직선이 평행하거나 동일하다면, 즉 교점을 찾을 수 없다면 false 아니면 true 반환</returns>
     public static bool GetLineIntersection(Vector3 a, Vector3 b, Vector3 c, Vector3 d, out Vector3 intersection)
     {
+        a.z = b.z = c.z = d.z = 1;
         Vector3 from = Vector3.Cross(a, b);
         Vector3 to = Vector3.Cross(c, d);
 
@@ -95,6 +115,11 @@ public static class GeometryExtension
         // cross = (x, y, w)
         // 교점 = (x / w, y / w)
         intersection = new Vector3(cross.x / cross.z, cross.y / cross.z);
+
+        Debug.DrawLine(intersection, intersection + Vector3.up, Color.black, 1f);
+        Debug.DrawLine(intersection, intersection + Vector3.down, Color.black, 1f);
+        Debug.DrawLine(intersection, intersection + Vector3.left, Color.black, 1f);
+        Debug.DrawLine(intersection, intersection + Vector3.right, Color.black, 1f);
 
         return true; // 교점이 찾아지면 true 반환
     }
@@ -154,13 +179,9 @@ public static class GeometryExtension
 
         // Debug.Log(Mathf.Abs(v1.y / v1.x - v2.y / v2.x));
 
-        if((v1.y / v1.x - v2.y / v2.x) < EPSILON) // v1의 기울기와 v2의 기울기의 오차가 0.01보다 작고
+        if (v1.normalized == v2.normalized) // 주석 적기
         {
-            Vector3 min = Vector3.Min(a, b); // 바운딩 박스의 최소값
-            Vector3 max = Vector3.Max(a, b); // 바운딩 박스의 최대값
-
-            // 바운딩 박스 안에 있다면
-            if((min.x <= point.x && point.x <= max.x) && (min.y <= point.y && point.y <= max.y))
+            if(v1.sqrMagnitude <= v2.sqrMagnitude) // 주석 적기
                 return true; // true 반환
         }
 
